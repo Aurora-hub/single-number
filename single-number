@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int singleNumber(int A[], int n) {
+        int ones = 0;
+        int twos = 0;
+        int threes;
+        for (int i=0; i<n;i++){
+            int t = A[i];
+            twos |= ones&t;
+            ones ^= t;
+            threes = ones & twos; //默认threes是0;
+            ones &= ~threes;
+            twos &= ~threes;
+        }
+        return ones;
+    }
+}
